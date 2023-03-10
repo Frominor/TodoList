@@ -1,0 +1,25 @@
+.LinkButtonBox{
+ width: 96%;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid black;
+    padding: 5px;
+    transition: 0.2s ease-in-out;
+}
+.Lala{
+    width: 96%;
+    display: flex;
+    align-items: center;
+    transition: 0.2s ease-in-out;  
+}
+.Lala:hover{
+    transform: scale(1.1);
+    width: 91%;
+    cursor: pointer; 
+}
+.LinkTo{
+    margin-left: 30px;
+}
+.LinkToImg{
+    margin-left: 30px;
+}
