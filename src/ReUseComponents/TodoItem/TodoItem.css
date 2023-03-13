@@ -1,0 +1,24 @@
+.TodoItem{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-top: 10px;
+    width: 95%;
+    background-color: white;
+    align-items: center;
+}
+.TodoTitle{
+    font-size: 20px;
+    margin-left: 20px;
+}
+.CheckBoxAndTitle{
+    display: flex;
+    justify-content: space-evenly;
+}
+.DoneOrNot{
+    margin-left: 20px;
+}
+.Completed{
+    background-color: rgb(41, 194, 41);
+}
