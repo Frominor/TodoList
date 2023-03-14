@@ -1,5 +1,5 @@
 const InitialState={
-    AllTodos:[{title:'FirstTodo',Completed:false},{title:'azz',Completed:false}],
+    AllTodos:[{title:'FirstTodo',Completed:false,PrepareToChanged:false},{title:'azz',Completed:false,PrepareToChanged:false}],
     DoneTodos:[],
     NotDoneTodos:[],
   AddTodoPopUpActive:false,

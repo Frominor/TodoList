@@ -1,18 +1,35 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-
-export default function AddTodoPopUp(){
-    const dispatch=useDispatch()
+export default function AddTodoPopUp({dispatch,State}){
     const [Value,SetValue]=React.useState('')
     function WriteTodoName(e){
      SetValue(e.target.value)
-     console.log(Value)
     }
+    React.useEffect(()=>{
+      for(let k of State.AllTodos){
+        if(k.PrepareToChanged==true){
+            SetValue(k.title)
+        }
+        
+      }
+    },[])
    function AddTodoToAllTodos(){
-    const Todo={title:Value,Completed:false}
-     dispatch({type:'ADD_TODO',payload:Todo})
-     SetValue('')
-     dispatch( dispatch({type:'CHANGE_POPUP',payload:false}))
+    for(let k of State.AllTodos){
+        if(k.PrepareToChanged==true){
+            k.title=Value
+            k.PrepareToChanged=false
+            dispatch({type:'FILTER_TODO',payload:State.AllTodos})
+            dispatch( dispatch({type:'CHANGE_POPUP',payload:false}))
+            return 
+        }  
+    }
+    if(+Value!=''){
+        const Todo={title:Value,Completed:false}
+        dispatch({type:'ADD_TODO',payload:Todo})
+        SetValue('')
+        dispatch( dispatch({type:'CHANGE_POPUP',payload:false}))
+    }else{
+        dispatch( dispatch({type:'CHANGE_POPUP',payload:false}))
+    }
    }
     return(
         <div className="AddTodoPopUp">

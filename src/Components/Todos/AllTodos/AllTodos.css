@@ -1,4 +1,3 @@
-.AllTodosBox{
-    display: flex;
-    flex-direction: row;
+.TodosBox{
+    width: 80%;
 }

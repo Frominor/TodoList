@@ -3,8 +3,6 @@ import './App.css';
 import LinkButton from './ReUseComponents/Buttons/LinkButton';
 import notebook from './notebook.png'
 import completed from './correct.png' 
-import notcompleted from './notcompleted.png'
-import TodosPage from './ReUseComponents/TodosPage/TodosPage';
 import { useRef } from 'react';
 import { CSSTransition } from "react-transition-group"
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,13 +20,12 @@ function App() {
         <h1 className='container_header_zagolovok'>My Todo List-{'All tasks'}</h1>
       </div>
       <CSSTransition ref={ref} in={State.AddTodoPopUpActive} mountOnEnter unmountOnExit timeout={600} classNames='my-node'>
-         <AddTodoPopUp></AddTodoPopUp>
+         <AddTodoPopUp dispatch={dispatch} State={State}></AddTodoPopUp>
       </CSSTransition>
       <div className='container_main'>
         <div className='LeftSide'>
           <LinkButton img={notebook} LinkTo={'All tasks'} to={'/'} ></LinkButton>
           <LinkButton img={completed}  LinkTo={'Done Todos'} to={'donetodos'} ></LinkButton>
-          <LinkButton img={notcompleted} LinkTo={'Not Done'} to={'notdonetodos'}></LinkButton>
         </div>
         <Routes>
           <Route index element={<AllTodos State={State}></AllTodos>}></Route>
