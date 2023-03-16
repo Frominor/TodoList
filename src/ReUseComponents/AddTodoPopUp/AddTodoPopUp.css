@@ -1,4 +1,26 @@
+.AddTodoPopUp{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  color: white;
+  height: 90%;
+  border-radius: 0px 0px 10px 10px;
+  z-index: 20;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.AddTodoPopUpWriteTodo{
+  width: 50%;
+}
 
+.WeatherCalendar{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+
+}
 .my-node-enter {
     opacity: 0;
   }

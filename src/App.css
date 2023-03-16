@@ -45,31 +45,4 @@ a{
   text-decoration: none;
   color: black;
 }
-.AddTodoPopUp{
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  color: white;
-  height: 90%;
-  border-radius: 0px 0px 10px 10px;
-  z-index: 20;
-  background-color: rgba(0, 0, 0, 0.7);
-}
-.my-node-enter {
-  opacity: 0;
-}
-.my-node-enter-active {
 
-  opacity: 1;
-  transition: opacity 200ms;
-}
-.my-node-exit {
-
-  opacity: 1;
-}
-.my-node-exit-active {
-  opacity: 0;
-  transition: opacity 200ms;
-}
