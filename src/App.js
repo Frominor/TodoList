@@ -13,6 +13,7 @@ function App() {
   const dispatch=useDispatch()
   const State=useSelector(state=>state.TodoReducer)
    const ref=useRef(null)
+   
   return (
     <div className="App">
      <div className='container'>
@@ -29,7 +30,7 @@ function App() {
         </div>
         <Routes>
           <Route index element={<AllTodos State={State}></AllTodos>}></Route>
-          <Route path='donetodos' element={<DoneTodos State={State}></DoneTodos>}></Route>
+          <Route path='donetodos' element={<DoneTodos DoneTodos={State.DoneTodos}></DoneTodos>}></Route>
         </Routes>
       </div>
      </div>

@@ -1,14 +1,13 @@
 import React from "react";
-import { Calendar } from "react-calendar";
 import { GetYourCoords } from "../../State/AsyncActions/AsyncGetCoord";
 import { GetWeather } from "../../State/AsyncActions/AsyncGetWeather";
+import { debounce } from "lodash-es";
 import './AddTodoPopUp.css'
 export default function AddTodoPopUp({dispatch,State}){
     const [Value,SetValue]=React.useState('')
-    const [City,SetCity]=React.useState('')
-    const [date,SetDate]=React.useState(new Date())
     function WriteTodoName(e){
      SetValue(e.target.value)
+     GetWeatherInTown()
     }
     React.useEffect(()=>{
       for(let k of State.AllTodos){
@@ -17,16 +16,21 @@ export default function AddTodoPopUp({dispatch,State}){
         } 
       }
     },[])
-    function AddTown(e){
-        SetCity(e.target.value)
-    }
-    function GetUserCoords(){
-        dispatch(GetYourCoords(City))
-    }
+  
+    const makeRequest=React.useCallback(  
+        debounce((e)=>{
+            return FindCityAndWeather(e)
+        },300),
+    [])
+        const FindCityAndWeather=(e)=>{
+              let value=e.target.value
+              dispatch(GetYourCoords(value))
+              dispatch(GetWeather(State))
+        }
     function GetWeatherInTown(){
         dispatch(GetWeather(State))
     }
-   function AddTodoToAllTodos(){
+    async function AddTodoToAllTodos(){
     for(let k of State.AllTodos){
         if(k.PrepareToChanged==true){
             k.title=Value
@@ -34,12 +38,11 @@ export default function AddTodoPopUp({dispatch,State}){
             dispatch({type:'FILTER_TODO',payload:State.AllTodos})
             dispatch( dispatch({type:'CHANGE_POPUP',payload:false}))
             return 
-        }
-       
+        }  
     }
+
     if(+Value!=''){
-        const Todo={title:Value,Completed:false,Weather:State.Weather}
-        console.log(Todo)
+        const Todo={title:Value,Completed:false,Weather:State.Weather?.weather[0]?.description,temp:State?.Weather?.main.feels_like,City:State.Weather.name}
         dispatch({type:'ADD_TODO',payload:Todo})
         SetValue('')
         dispatch( dispatch({type:'CHANGE_POPUP',payload:false}))
@@ -53,16 +56,13 @@ export default function AddTodoPopUp({dispatch,State}){
                 <h2>Введите название Todo</h2>
                 <input type={'text'} onChange={WriteTodoName} value={Value}></input>
                 <button onClick={AddTodoToAllTodos}>Добавить</button>
-                <button onClick={GetUserCoords}></button>
             </div>
             <div>
-                <h2>Введите город,в котором будет Todo</h2>
-                <input type={'text'} onChange={(e)=>AddTown(e)} value={City}></input>
+                <h2>Введите  названия города для  того,чтобы узнать,помешает ли погода вашем делам</h2>
+                <input type={'text'} onChange={(e)=>makeRequest(e)} ></input>
             </div>
-            <div className="WeatherCalendar">
-                 <Calendar value={date} onChange={SetDate}></Calendar>
-            </div>
-<button onClick={GetWeatherInTown}>Жопа</button>
+            
+
         </div>
     )
 }
