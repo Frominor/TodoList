@@ -1,0 +1,9 @@
+.Container{
+    height: 80%;
+    border-radius: 10px;
+    width: 900px;
+    position: relative;
+    -webkit-box-shadow: 8px 9px 8px 5px rgba(34, 60, 80, 0.3);
+    -moz-box-shadow: 8px 9px 8px 5px rgba(34, 60, 80, 0.3);
+    box-shadow: 8px 9px 8px 5px rgba(34, 60, 80, 0.3);
+    }

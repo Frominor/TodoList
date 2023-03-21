@@ -1,0 +1,17 @@
+.SortZagolovok{
+    margin: 0px;
+}
+.SortBtn{
+    background: none;
+border-radius: 5px;
+color: white;
+}
+.SortTime{
+    margin-right: 15px;
+}
+.SortBy{
+    width: 30%;
+    display: flex;
+    margin-right:50px;
+    align-items: center;
+   }

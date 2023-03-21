@@ -16,17 +16,19 @@
     align-items: center;
 }
 .Footer{
-    position: absolute;
-    bottom: 5%;
-    right: 10%;
-    transition: 0.3s ease-in-out;
-}
-.Footer:hover{
-    transform:scale(1.2);
-    cursor: pointer;
+    width: 90%;
+padding: 15px;
+    display: flex;
+    justify-content: flex-end;
+ flex-shrink: 0; 
 }
 .AddTodo{
     cursor: pointer;
     border: 0px;
+    transition: 0.3s ease-in-out;
      background: none;
+     
+}
+.AddTodo:hover{
+transform: scale(1.2);
 }

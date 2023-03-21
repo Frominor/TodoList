@@ -1,13 +1,10 @@
 import React from "react";
-import { GetYourCoords } from "../../State/AsyncActions/AsyncGetCoord";
-import { GetWeather } from "../../State/AsyncActions/AsyncGetWeather";
-import { debounce } from "lodash-es";
 import './AddTodoPopUp.css'
+import close from './close.png'
 export default function AddTodoPopUp({dispatch,State}){
     const [Value,SetValue]=React.useState('')
     function WriteTodoName(e){
      SetValue(e.target.value)
-     GetWeatherInTown()
     }
     React.useEffect(()=>{
       for(let k of State.AllTodos){
@@ -16,20 +13,9 @@ export default function AddTodoPopUp({dispatch,State}){
         } 
       }
     },[])
-  
-    const makeRequest=React.useCallback(  
-        debounce((e)=>{
-            return FindCityAndWeather(e)
-        },300),
-    [])
-        const FindCityAndWeather=(e)=>{
-              let value=e.target.value
-              dispatch(GetYourCoords(value))
-              dispatch(GetWeather(State))
-        }
-    function GetWeatherInTown(){
-        dispatch(GetWeather(State))
-    }
+    function closePopUp(){
+        dispatch( dispatch({type:'CHANGE_POPUP',payload:false}))
+      }
     async function AddTodoToAllTodos(){
     for(let k of State.AllTodos){
         if(k.PrepareToChanged==true){
@@ -40,29 +26,32 @@ export default function AddTodoPopUp({dispatch,State}){
             return 
         }  
     }
-
+ 
     if(+Value!=''){
-        const Todo={title:Value,Completed:false,Weather:State.Weather?.weather[0]?.description,temp:State?.Weather?.main.feels_like,City:State.Weather.name}
+    let str=`${new Date()}`.split(' ')
+    console.log(str) 
+    let finalstr=str[0] + ' ' +str[1]+' '+str[2]+' '+str[3]+' '+ str[4]
+    console.log(finalstr)
+        const Todo={title:Value,Completed:false,PrepareToChanged:false,Date:finalstr}
         dispatch({type:'ADD_TODO',payload:Todo})
         SetValue('')
-        dispatch( dispatch({type:'CHANGE_POPUP',payload:false}))
-    }else{
-        dispatch( dispatch({type:'CHANGE_POPUP',payload:false}))
+        closePopUp()
     }
    }
     return(
         <div className="AddTodoPopUp">
             <div className="AddTodoPopUpWriteTodo">
-                <h2>Введите название Todo</h2>
-                <input type={'text'} onChange={WriteTodoName} value={Value}></input>
-                <button onClick={AddTodoToAllTodos}>Добавить</button>
+                <div className="WriteTodoOpisanie">
+                <h2>Введите  Todo</h2>
+                </div>
+                <div className="WriteTodoBox">
+                <input type={'text'} onChange={WriteTodoName} value={Value} className='InputForWriteTodo'></input>
+                <button onClick={AddTodoToAllTodos} className='addtodo'>Добавить</button>
+                </div>
             </div>
-            <div>
-                <h2>Введите  названия города для  того,чтобы узнать,помешает ли погода вашем делам</h2>
-                <input type={'text'} onChange={(e)=>makeRequest(e)} ></input>
+            <div className="CloseBox">
+                <img src={close} className='Close' onClick={closePopUp}></img>
             </div>
-            
-
         </div>
     )
 }

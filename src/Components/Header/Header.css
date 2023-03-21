@@ -1,0 +1,17 @@
+.container_header{
+    border-radius:  10px 10px 0px 0px ;
+   height: 80px;
+       display: flex;
+       align-items: center;
+     justify-content: space-between;
+       color: white;
+    background-color:#3F51B5 ;
+    width: 100%;
+  }
+  .Zagolovok_Box{
+    display: flex;
+    width: 70%;
+  }
+  .container_header_zagolovok{
+    margin-left: 30px;
+  }

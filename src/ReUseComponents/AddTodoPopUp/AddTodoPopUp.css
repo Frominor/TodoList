@@ -14,15 +14,37 @@
   color: red
 }
 .AddTodoPopUpWriteTodo{
-  width: 50%;
-}
-
-.WeatherCalendar{
+  height: 30%;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50%;
+  flex-direction: column;
+width: 50%;
 
+}
+h2{
+  text-align: center;
+  margin-left: 50px;
+}
+.WriteTodoBox{
+display: flex;
+justify-content: space-around;
+}
+.addtodo{
+  width: 150px;
+  border-radius: 5px;
+  transition: 0.2s ease-in-out;
+  background: rgb(13, 190, 13);
+}
+.addtodo:hover{
+  background-color: green;
+  cursor: pointer;
+}
+.InputForWriteTodo{
+  height: 30px;
+  width: 250px;
+  border-radius: 10px;
+  outline: none;
+  border: 0px;
+  font-size: 25px;
 }
 .my-node-enter {
     opacity: 0;
@@ -33,11 +55,22 @@
     transition: opacity 200ms;
   }
   .my-node-exit {
-
     opacity: 1;
   }
   .my-node-exit-active {
-  
     opacity: 0;
     transition: opacity 200ms;
+  }
+  .CloseBox{
+    position: absolute;
+    bottom: 2.3%;
+    right:6%
+  }
+  .Close{
+    width: 65px;
+    transition: 0.3s ease-in-out;
+  }
+  .Close:hover{
+    cursor: pointer;
+    transform: scale(1.2);
   }

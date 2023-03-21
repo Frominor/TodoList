@@ -1,3 +1,7 @@
-.TodosBox{
-    width: 80%;
+
+.DoneTodos{
+    width: 70%;
+}
+.DoneTodosScroll{
+    overflow-y: scroll;
 }
