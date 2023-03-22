@@ -8,17 +8,3 @@
 }
 
 
-.LeftSide{
-  width: 30%;
-  height: 100%;
-  background-color: white;
-  border-right: 2px solid black;
-}
-.Todos{
-  width: 70%;
-}
-a{
-  text-decoration: none;
-  color: black;
-}
-
