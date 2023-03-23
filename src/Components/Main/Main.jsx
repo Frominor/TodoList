@@ -4,20 +4,13 @@ import { Route, Routes } from "react-router-dom";
 import completed from "./correct.png";
 import LinkButton from "../../ReUseComponents/Buttons/LinkButton";
 import DoneTodos from "../Todos/DoneTodos/DoneTodos";
+import { useDispatch } from "react-redux";
 import AllTodos from "../Todos/AllTodos/AllTodos";
 import "./Main.css";
-export default function Main({ State, dispatch, Todos }) {
+export default function Main({ State,Todos }) {
+  const dispatch = useDispatch();
   const [CurrentCard, SetCurrentCard] = React.useState();
   let num = 0;
-  const DeleteTodo = (item) => {
-    item.Completed = false;
-    let value = item.title;
-    let FilteredTodos = Todos.filter((todo) => todo.title !== value);
-    if (State.isActive) {
-      dispatch({ type: "FILTER_TODO", payload: FilteredTodos });
-    }
-    dispatch({ type: "FILTER_DONE_TODOS", payload: FilteredTodos });
-  };
   const dragStartHandler = (e, item) => {
     SetCurrentCard(item);
   };
@@ -66,7 +59,6 @@ export default function Main({ State, dispatch, Todos }) {
           element={
             <AllTodos
               State={State}
-              DeleteTodo={DeleteTodo}
               dragStartHandler={dragStartHandler}
               drophandler={drophandler}
               DrugOverhandler={DrugOverhandler}
@@ -78,7 +70,6 @@ export default function Main({ State, dispatch, Todos }) {
           path="donetodos"
           element={
             <DoneTodos
-              DeleteTodo={DeleteTodo}
               dragStartHandler={dragStartHandler}
               DoneTodos={State.DoneTodos}
               drophandler={drophandler}

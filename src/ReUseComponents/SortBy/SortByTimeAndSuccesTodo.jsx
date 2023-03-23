@@ -1,6 +1,8 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import "./SortByTimeAndSuccesTodo.css";
-export default function SortByTimeAndSuccesTodo({ State, dispatch, isActive }) {
+export default function SortByTimeAndSuccesTodo({ State,  isActive }) {
+  const dispatch=useDispatch()
   function SortBySucces() {
     for (let i = 0; i < State.length; i++) {
       for (let j = i + 1; j < State.length; j++) {
@@ -18,8 +20,11 @@ export default function SortByTimeAndSuccesTodo({ State, dispatch, isActive }) {
       for (let j = i + 1; j < State.length; j++) {
         let first = `${State[i].Date}`;
         let second = `${State[j].Date}`;
+            console.log(first)
         let arr1 = first.split(" ");
+        console.log(arr1)
         let arr2 = second.split(" ");
+        
         if (arr1[4].split(":") < arr2[4].split(":")) {
           let float = State[i];
           State[i] = State[j];

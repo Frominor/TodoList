@@ -9,9 +9,11 @@ export default function AllTodos({
   drophandler,
   DrugOverhandler,
   DrugEndhandler,
-  DeleteTodo,
 }) {
   const dispatch = useDispatch();
+  const DeleteTodo=(item)=>{
+    dispatch({type:'FILTER_TODO',payload:item})
+  }
   React.useEffect(() => {
     dispatch({ type: "dsad", payload: true });
   }, []);
@@ -21,17 +23,12 @@ export default function AllTodos({
     if (item.Completed) {
       dispatch({ type: "DoneTodos", payload: item });
     } else {
-      let value = item.title;
-      let FilteredTodos = State.DoneTodos.filter(
-        (todo) => todo.title !== value
-      );
-      dispatch({ type: "FILTER_DONE_TODOS", payload: FilteredTodos });
-      dispatch({ type: "FILTER_TODO", payload: State.AllTodos });
+      dispatch({ type: "FILTER_DONE_TODOS", payload: item.title });
     }
   };
 
   const ChangeTodoTitle = (item) => {
-    item.PrepareToChanged = true;
+    dispatch({type:'PREPARE_TO_CHANGE',payload:item.title})
     dispatch({ type: "CHANGE_POPUP", payload: true });
   };
   return (

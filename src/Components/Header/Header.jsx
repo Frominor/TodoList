@@ -1,7 +1,7 @@
 import React from "react";
 import "./Header.css";
 import SortByTimeAndSuccesTodo from "../../ReUseComponents/SortBy/SortByTimeAndSuccesTodo";
-export default function Header({ State, dispatch }) {
+export default function Header({ State}) {
   return (
     <div className="container_header header">
       <div className="Zagolovok_Box">
@@ -13,7 +13,6 @@ export default function Header({ State, dispatch }) {
         <SortByTimeAndSuccesTodo
           isActive={State.isActive}
           State={State.isActive ? State.AllTodos : State.DoneTodos}
-          dispatch={dispatch}
         ></SortByTimeAndSuccesTodo>
       </div>
     </div>

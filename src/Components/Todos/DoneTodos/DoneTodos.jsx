@@ -8,7 +8,6 @@ export default function DoneTodos({
   dragStartHandler,
   DrugOverhandler,
   DrugEndhandler,
-  DeleteTodo,
 }) {
   const dispatch = useDispatch();
 
@@ -22,6 +21,7 @@ export default function DoneTodos({
   };
   return (
     <div className={DoneTodos.length > 5 ? "DoneTodosScroll" : "DoneTodos"}>
+
       {DoneTodos.map((item) => {
         if (item.Completed == false) {
         } else {
@@ -34,7 +34,6 @@ export default function DoneTodos({
               onDrop={(e) => drophandler(e, item)}
               item={item}
               Todos={DoneTodos}
-              DeleteTodo={() => DeleteTodo(item)}
               ChangeActive={() => ChangeActive(item)}
             ></TodoItem>
           );

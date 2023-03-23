@@ -1,14 +1,16 @@
 import React from "react";
 import "./AddTodoPopUp.css";
 import close from "./close.png";
-export default function AddTodoPopUp({ dispatch, State }) {
+import { useDispatch } from "react-redux";
+export default function AddTodoPopUp({ State }) {
+  const dispatch = useDispatch();
   const [Value, SetValue] = React.useState("");
   function WriteTodoName(e) {
     SetValue(e.target.value);
   }
   React.useEffect(() => {
     for (let k of State.AllTodos) {
-      if (k.PrepareToChanged == true) {
+      if (k.PrepareToChanged) {
         SetValue(k.title);
       }
     }
@@ -18,7 +20,7 @@ export default function AddTodoPopUp({ dispatch, State }) {
   }
   async function AddTodoToAllTodos() {
     for (let k of State.AllTodos) {
-      if (k.PrepareToChanged == true) {
+      if (k.PrepareToChanged) {
         k.title = Value;
         k.PrepareToChanged = false;
         dispatch({ type: "FILTER_TODO", payload: State.AllTodos });
@@ -26,13 +28,12 @@ export default function AddTodoPopUp({ dispatch, State }) {
         return;
       }
     }
-
-    if (+Value != "") {
+  console.log(Value)
+    if (Value.trim()) {
       let str = `${new Date()}`.split(" ");
-      console.log(str);
+      console.log(str)
       let finalstr =
-        str[0] + " " + str[1] + " " + str[2] + " " + str[3] + " " + str[4];
-      console.log(finalstr);
+        str[0] + " " + str[1] + " " + str[2] + " " + str[3] + " " + str[4];  
       const Todo = {
         title: Value,
         Completed: false,
@@ -43,6 +44,7 @@ export default function AddTodoPopUp({ dispatch, State }) {
       SetValue("");
       closePopUp();
     }
+    
   }
   return (
     <div className="AddTodoPopUp">
@@ -57,7 +59,7 @@ export default function AddTodoPopUp({ dispatch, State }) {
             value={Value}
             className="InputForWriteTodo"
           ></input>
-          <button onClick={AddTodoToAllTodos} className="addtodo">
+          <button onClick={AddTodoToAllTodos} disabled={!Value} className="addtodo">
             Добавить
           </button>
         </div>
