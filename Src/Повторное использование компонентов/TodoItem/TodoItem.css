@@ -8,6 +8,9 @@
     align-items: center;
     margin-left: 15px;
 }
+.TodoItem:hover{
+cursor:pointer;
+}
 .TodoTitle{
     font-size: 20px;
     margin-left: 20px;
