@@ -1,5 +1,4 @@
 import React from "react";
-import "./Item.css";
 import deletes from "./delete.png";
 import pen from "./pen.png";
 import clock from "./clock.png";
