@@ -1,55 +1,54 @@
-.TodoItem{
-    border: 1px solid black;
-    border-radius: 5px;
-    margin-top: 10px;
-    width: 95%;
- background-color:white;
- 
-    align-items: center;
-    margin-left: 15px;
-}
-.TodoItem:hover{
-cursor:pointer;
-}
-.TodoTitle{
-    font-size: 20px;
-    margin-left: 20px;
-}
-.CheckBoxAndTitle{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-}
-.DoneOrNot{
-    
-    margin: 3px 0px 0px 20px ;
-}
-.Completed{
-    color: white;
-    background-color: rgb(41, 194, 41) !important;
-}
-.DateBox{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-align-items: center;
-}
-.DateBox>img{
-    margin-right: 20px;
-    width: 20px;
-    height: 20px;
-}
-.DateBox>p{
-    margin: 0px;
-    text-align: center;
-}
-.InpChangeAndDel{
-    display: flex;
-    align-items: center;
-    width: 80%;
-    height: 50px;
+.TodoItem {
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-top: 10px;
+  width: 95%;
+  background-color: white;
 
+  align-items: center;
+  margin-left: 15px;
 }
-p{
-    text-align: center;
+.TodoItem:hover {
+  cursor: pointer;
+}
+.TodoTitle {
+  font-size: 20px;
+  margin-left: 20px;
+}
+.CheckBoxAndTitle {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.DoneOrNot {
+  cursor: pointer;
+  margin: 3px 0px 0px 20px;
+}
+.Completed {
+  color: white;
+  background-color: rgb(41, 194, 41) !important;
+}
+.DateBox {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.DateBox > img {
+  margin-right: 20px;
+  width: 20px;
+  height: 20px;
+}
+.DateBox > p {
+  margin: 0px;
+  text-align: center;
+}
+.InpChangeAndDel {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  height: 50px;
+}
+p {
+  text-align: center;
 }

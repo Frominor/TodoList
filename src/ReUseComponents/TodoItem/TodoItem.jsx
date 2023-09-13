@@ -14,18 +14,17 @@ export default function TodoItem({
   onDragLeave,
   onDrugOver,
 }) {
-  const dispatch=useDispatch()
-  const State=useSelector((state)=>state.TodoReducer)
-  const DeleteTodo=(item)=>{
-            if(State.isActive){
-              dispatch({type:'FILTER_TODO',payload:item.title})
-            }else{
-              dispatch({type:'FILTER_DONE_TODOS',payload:item.title})
-              
-              dispatch({type:'FILTER_TODO',payload:item.title})
-              
-            }
-  }
+  const dispatch = useDispatch();
+  const State = useSelector((state) => state.TodoReducer);
+  const DeleteTodo = (item) => {
+    if (State.isActive) {
+      dispatch({ type: "FILTER_TODO", payload: item.title });
+    } else {
+      dispatch({ type: "FILTER_DONE_TODOS", payload: item.title });
+
+      dispatch({ type: "FILTER_TODO", payload: item.title });
+    }
+  };
   return (
     <div
       className={item.Completed ? "TodoItem Completed" : "TodoItem"}
@@ -59,10 +58,18 @@ export default function TodoItem({
           <p className={"TodoTitle"}>{item.title}</p>
         </div>
         <div className="TodoButtons">
-          <button className="DeleteTodo" onClick={() => DeleteTodo(item)}>
+          <button
+            className="DeleteTodo"
+            style={{ cursor: "pointer" }}
+            onClick={() => DeleteTodo(item)}
+          >
             <img src={deletes}></img>
           </button>
-          <button className="EditTodo" onClick={ChangeTodoTitle}>
+          <button
+            className="EditTodo"
+            style={{ cursor: "pointer" }}
+            onClick={ChangeTodoTitle}
+          >
             <img src={pen}></img>
           </button>
         </div>
