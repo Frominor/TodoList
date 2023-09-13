@@ -28,12 +28,12 @@ export default function AddTodoPopUp({ State }) {
         return;
       }
     }
-  console.log(Value)
+    console.log(Value);
     if (Value.trim()) {
       let str = `${new Date()}`.split(" ");
-      console.log(str)
+      console.log(str);
       let finalstr =
-        str[0] + " " + str[1] + " " + str[2] + " " + str[3] + " " + str[4];  
+        str[0] + " " + str[1] + " " + str[2] + " " + str[3] + " " + str[4];
       const Todo = {
         title: Value,
         Completed: false,
@@ -44,7 +44,6 @@ export default function AddTodoPopUp({ State }) {
       SetValue("");
       closePopUp();
     }
-    
   }
   return (
     <div className="AddTodoPopUp">
@@ -59,7 +58,11 @@ export default function AddTodoPopUp({ State }) {
             value={Value}
             className="InputForWriteTodo"
           ></input>
-          <button onClick={AddTodoToAllTodos} disabled={!Value} className="addtodo">
+          <button
+            onClick={AddTodoToAllTodos}
+            disabled={!Value}
+            className="addtodo"
+          >
             Добавить
           </button>
         </div>
