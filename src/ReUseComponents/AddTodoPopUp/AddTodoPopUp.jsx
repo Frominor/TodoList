@@ -1,34 +1,48 @@
 import React from "react";
-import "./AddTodoPopUp.css";
+
 import close from "./close.png";
-import { useDispatch } from "react-redux";
-export default function AddTodoPopUp({ State }) {
+import { useDispatch, useSelector } from "react-redux";
+import "./AddTodoPopUp.css";
+export default function AddTodoPopUp() {
+  const State = useSelector((state) => state.TodoReducer);
   const dispatch = useDispatch();
   const [Value, SetValue] = React.useState("");
   function WriteTodoName(e) {
     SetValue(e.target.value);
   }
+  function closePopUpWithEscape(e) {
+    if (e.key == "Escape") {
+      dispatch({ type: "CHANGE_POPUP", payload: false });
+    }
+  }
   React.useEffect(() => {
+    window.addEventListener("keydown", closePopUpWithEscape);
     for (let k of State.AllTodos) {
       if (k.PrepareToChanged) {
         SetValue(k.title);
       }
     }
+    window.onclick = (e) => {
+      if (e.target.classList.contains("App")) {
+        dispatch({ type: "CHANGE_POPUP", payload: false });
+      }
+    };
+    return () => {
+      window.removeEventListener("keydown", closePopUpWithEscape);
+    };
   }, []);
   function closePopUp() {
-    dispatch(dispatch({ type: "CHANGE_POPUP", payload: false }));
+    dispatch({ type: "CHANGE_POPUP", payload: false });
   }
-  async function AddTodoToAllTodos() {
+  function AddTodoToAllTodos() {
     for (let k of State.AllTodos) {
       if (k.PrepareToChanged) {
         k.title = Value;
         k.PrepareToChanged = false;
         dispatch({ type: "FILTER_TODO", payload: State.AllTodos });
-        dispatch(dispatch({ type: "CHANGE_POPUP", payload: false }));
-        return;
+        dispatch({ type: "CHANGE_POPUP", payload: false });
       }
     }
-    console.log(Value);
     if (Value.trim()) {
       let str = `${new Date()}`.split(" ");
       console.log(str);

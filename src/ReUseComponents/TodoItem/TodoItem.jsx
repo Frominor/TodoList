@@ -16,14 +16,10 @@ export default function TodoItem({
   const dispatch = useDispatch();
   const State = useSelector((state) => state.TodoReducer);
   const DeleteTodo = (item) => {
-    if (State.isActive) {
-      dispatch({ type: "FILTER_TODO", payload: item.title });
-    } else {
-      dispatch({ type: "FILTER_DONE_TODOS", payload: item.title });
-
-      dispatch({ type: "FILTER_TODO", payload: item.title });
-    }
+    dispatch({ type: "FILTER_TODO", payload: item.title });
+    dispatch({ type: "FILTER_DONE_TODOS", payload: item.title });
   };
+
   return (
     <div
       className={item.Completed ? "TodoItem Completed" : "TodoItem"}

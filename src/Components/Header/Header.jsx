@@ -1,7 +1,9 @@
 import React from "react";
 import "./Header.css";
 import SortByTimeAndSuccesTodo from "../../ReUseComponents/SortBy/SortByTimeAndSuccesTodo";
-export default function Header({ State}) {
+import { useSelector } from "react-redux";
+export default function Header() {
+  const State = useSelector((state) => state.TodoReducer);
   return (
     <div className="container_header header">
       <div className="Zagolovok_Box">

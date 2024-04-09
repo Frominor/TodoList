@@ -4,10 +4,11 @@ import { Route, Routes } from "react-router-dom";
 import completed from "./correct.png";
 import LinkButton from "../../ReUseComponents/Buttons/LinkButton";
 import DoneTodos from "../Todos/DoneTodos/DoneTodos";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import AllTodos from "../Todos/AllTodos/AllTodos";
 import "./Main.css";
-export default function Main({ State,Todos }) {
+export default function Main({ Todos }) {
+  const State = useSelector((state) => state.TodoReducer);
   const dispatch = useDispatch();
   const [CurrentCard, SetCurrentCard] = React.useState();
   let num = 0;

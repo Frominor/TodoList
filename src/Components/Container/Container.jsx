@@ -1,16 +1,19 @@
 import React from "react";
 import "./Container.css";
-import {  useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Header from "../Header/Header";
 import { CSSTransition } from "react-transition-group";
 import AddTodoPopUp from "../../ReUseComponents/AddTodoPopUp/AddTodoPopUp";
 import Main from "../Main/Main";
+import { useDispatch } from "react-redux";
 export default function Container() {
   const State = useSelector((state) => state.TodoReducer);
   const ref = React.useRef(null);
+  const dispatch = useDispatch();
+
   return (
     <div className="Container">
-      <Header State={State} ></Header>
+      <Header></Header>
       <CSSTransition
         ref={ref}
         in={State.AddTodoPopUpActive}
@@ -19,13 +22,10 @@ export default function Container() {
         timeout={600}
         classNames="my-node"
       >
-        <AddTodoPopUp  State={State}></AddTodoPopUp>
+        <AddTodoPopUp></AddTodoPopUp>
       </CSSTransition>
-      
-      <Main
-        State={State}
-        Todos={State.isActive ? State.AllTodos : State.DoneTodos}
-      ></Main>
+
+      <Main Todos={State.isActive ? State.AllTodos : State.DoneTodos}></Main>
     </div>
   );
 }
